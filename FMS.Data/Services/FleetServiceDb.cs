@@ -1,0 +1,209 @@
+using System;
+using System.Linq;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
+using FMS.Data.Models;
+using FMS.Data.Repository;
+using FMS.Data.Security;
+
+namespace FMS.Data.Services
+{
+    public class FleetServiceDb : IFleetService
+    {
+        private readonly DataContext db;
+
+        public FleetServiceDb()
+        {
+            db = new DataContext();
+        }
+
+        public void Initialise()
+        {
+            db.Initialise(); // recreate database
+        }
+
+
+
+        // ==================== Fleet Management ==================
+       
+        // implement IFleetService methods here
+
+
+        // All needed operations for Vehicle Management
+
+                // retrieve list of Vehicles
+        public IList<Vehicle> GetVehicles()
+        {
+            return db.Vehicles.ToList();
+        }
+
+        // Retrive vehicle by Id and related MOT
+        public Vehicle GetVehicle(int id)
+        {
+            return db.Vehicles
+                     .Include(s => s.Mot)
+                     .FirstOrDefault(s => s.Id == id);
+
+        }
+
+                    //  .Include(s => s.StudentModules)
+                    //  // drill down and include each studentmodule module entity     
+                    //  .ThenInclude(sm => sm.Module) 
+                    //  .FirstOrDefault(s => s.Id == id);
+
+        
+
+        // Add a new vehicle checking registration number is unique
+        public Vehicle AddVehicle(string make, string model, int year,
+                                    int regNo, string fueltype, string transmission, int cc, 
+                                    int noofdoors, DateTime motdue, string carphotourl)
+        {
+            // check if student with email exists            
+            var exists = GetVehicleByRegNo(regNo);
+            if (exists != null)
+            {
+                return null;
+            } 
+
+            // create new vehicle
+            var s = new Vehicle
+            {
+                Make = make,
+                Model = model,
+                Year = year,
+                RegistrationNo = regNo,
+                FuelType = fueltype,
+                Transmission = transmission,
+                CC = cc,
+                NoofDoors = noofdoors,
+                MOTDue = motdue,
+                CarPhotoUrl = carphotourl
+            };
+
+            db.Vehicles.Add(s); // add Vehicle to the list
+            db.SaveChanges();
+            return s; // return newly added Vehicle
+        }
+
+        public Vehicle GetVehicleByRegNo(int registrationNo)
+        {
+            return db.Vehicles.FirstOrDefault(s => s.RegistrationNo == registrationNo);
+        }
+
+
+        // Delete the Vehicle identified by Id returning true if 
+        // deleted and false if not found
+        public bool DeleteVehicle(int id)
+        {
+            var s = GetVehicle(id);
+            if (s == null)
+            {
+                return false;
+            }
+
+            db.Vehicles.Remove(s);
+            db.SaveChanges();
+            return true;
+        }
+
+
+        // Update the Vehicle with the details in updated 
+        public Vehicle UpdateVehicle(Vehicle updated)
+        {
+            // verify the Vehicle exists
+            var vehicle = GetVehicle(updated.Id);
+            if (vehicle == null)
+            {
+                return null;
+            }
+            // update the details of the Vehicle retrieved and save
+                vehicle.Make = updated.Make;
+                vehicle.Year = updated.Year;
+                //vehicle.RegistrationNo = updated.RegistrationNo; Should be permanent and uneditable
+                vehicle.FuelType = updated.FuelType;
+                vehicle.Transmission = updated.Transmission;
+                vehicle.CC = updated.CC;
+                vehicle.NoofDoors = updated.NoofDoors;
+                vehicle.MOTDue = updated.MOTDue;
+                vehicle.CarPhotoUrl = updated.CarPhotoUrl;
+                
+            db.SaveChanges();
+            return vehicle;
+        }
+
+        //Checking for Vehicle Duplicates by Vehicle Registration Number
+        public bool IsDuplicateVehicleReg(int regNo, int vehicleId) 
+        {
+            var existing = GetVehicleByRegNo(regNo);
+            // if a student with email exists and the Id does not match
+            // the studentId (if provided), then they cannot use the email
+            return existing != null && vehicleId != existing.Id;           
+        }
+
+
+        // All needed operations for MOT Management
+
+        public Mot CreateMot(int id, string testReport)
+        {
+            var vehicle = GetVehicle(id);
+            if (vehicle == null) return null;
+
+            var mot = new Mot
+            {
+                // Id created by Database
+                TestReport = testReport,        
+                VehicleId = id,
+                // set by default in model but we can override here if required
+                DateOfMOT = DateTime.Now,
+            };
+            db.Mots.Add(mot);
+            db.SaveChanges(); // write to database
+            return mot;
+        }
+
+
+
+
+
+
+        // ==================== User Authentication/Registration Management ==================
+        public User Authenticate(string email, string password)
+        {
+            // retrieve the user based on the EmailAddress (assumes EmailAddress is unique)
+            var user = GetUserByEmail(email);
+
+            // Verify the user exists and Hashed User password matches the password provided
+            return (user != null && Hasher.ValidateHash(user.Password, password)) ? user : null;
+        }
+
+        public User Register(string name, string email, string password, Role role)
+        {
+            // check that the user does not already exist (unique user name)
+            var exists = GetUserByEmail(email);
+            if (exists != null)
+            {
+                return null;
+            }
+
+            // Custom Hasher used to encrypt the password before storing in database
+            var user = new User 
+            {
+                Name = name,
+                Email = email,
+                Password = Hasher.CalculateHash(password),
+                Role = role   
+            };
+   
+            db.Users.Add(user);
+            db.SaveChanges();
+            return user;
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return db.Users.FirstOrDefault(u => u.Email == email);
+        }
+
+    }
+}
