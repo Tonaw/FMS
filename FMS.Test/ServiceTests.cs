@@ -65,6 +65,7 @@ namespace FMS.Test
 
         // write suitable tests to verify operation of the fleet service
         
+        [Fact]
         public void Vehicle_Update_Existing()
         {
             // arrange - create test vehicle
@@ -108,7 +109,59 @@ namespace FMS.Test
             Assert.Equal(u.CarPhotoUrl, us.CarPhotoUrl);
         }
 
+        [Fact] 
+        public void Vehicle_GetAllVehicle_SinceNone_ShouldReturn0()
+        {
+            // act 
+            var vehicles = svc.GetVehicles();
+            var count = vehicles.Count; //counts existing vehicles
+
+            // assert
+            Assert.Equal(0, count);
+        }
+
+        [Fact]
+        public void Vehicle_GetAllVehicles_SinceTwoExists_ShouldReturn2()
+        {
+            // arrange
+            var exist = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var exist2 = svc.AddVehicle("Merc", "S-Class", 2021, 77776768, "Diesel", "Auto", 3890, 4, new System.DateTime(2020-09-19), "");
+            
+            // act
+            var vehicles = svc.GetVehicles();
+            var count = vehicles.Count;
+
+            // assert
+            Assert.Equal(2, count);
+        }
+
+         [Fact] 
+        public void Vehicle_GetVehicle_WhenNonExistent_ShouldReturnNull()
+        {
+            // act 
+            var vehicle = svc.GetVehicle(1); // non existent vehicle
+
+            // assert
+            Assert.Null(vehicle);
+        }
+
+        [Fact]
+         public void Vehicle_GetVehicle_WhenNonExistent_ShouldReturnVehicle()
+        {
+            // act 
+            var s = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+
+
+            var ns = svc.GetVehicle(s.Id);
+
+            // assert
+            Assert.NotNull(ns);
+            Assert.Equal(1, ns.Id);
+        }
         
+            
+
+
 
     }
 }
