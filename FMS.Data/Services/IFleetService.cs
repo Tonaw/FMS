@@ -10,8 +10,32 @@ namespace FMS.Data.Services
     {
         void Initialise();
         
-        // add suitable method definitions to implement assignment requirements            
-    
+        // add suitable method definitions to implement assignment requirements
+
+        // ---------------- Vehicle Management --------------
+        IList<Vehicle> GetVehicles();
+        Vehicle GetVehicle(int id);
+        Vehicle AddVehicle(string make, string model, int year,
+                                    int regNo, string fueltype, string transmission, int cc, 
+                                    int noofdoors, DateTime motdue, string carphotourl);
+        Vehicle GetVehicleByRegNo(int RegistrationNo);
+        bool DeleteVehicle(int id); 
+        Vehicle UpdateVehicle(Vehicle updated);
+        bool IsDuplicateVehicleReg(int regNo, int vehicleId); 
+
+        //MOT Data
+
+        Mot CreateMot(int id, string testReport, string testername, string teststatus, int mileage);
+        Mot GetMot(int id);
+        bool DeleteMot(int id);
+        IList<Mot> GetAllMots();
+
+
+
+
+
+
+
 
         // ------------- User Management -------------------
         User Authenticate(string email, string password);

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj": {}
+    "C:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj": {}
   },
   "projects": {
-    "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj": {
+    "C:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj",
+        "projectUniqueName": "C:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj",
         "projectName": "FMS.Data",
-        "projectPath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj",
+        "projectPath": "C:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\FMS.Data.csproj",
         "packagesPath": "C:\\Users\\USER\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\obj\\",
+        "outputPath": "C:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Data\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\USER\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -120,12 +120,12 @@ namespace FMS.Data.Services
             // update the details of the Vehicle retrieved and save
                 vehicle.Make = updated.Make;
                 vehicle.Year = updated.Year;
-                //vehicle.RegistrationNo = updated.RegistrationNo; Should be permanent and uneditable
+                //vehicle.RegistrationNo = updated.RegistrationNo; Should be permanent and uneditable (read only)
                 vehicle.FuelType = updated.FuelType;
                 vehicle.Transmission = updated.Transmission;
                 vehicle.CC = updated.CC;
                 vehicle.NoofDoors = updated.NoofDoors;
-                vehicle.MOTDue = updated.MOTDue;
+                //vehicle.MOTDue = updated.MOTDue; Should be permanent and uneditable (read only)
                 vehicle.CarPhotoUrl = updated.CarPhotoUrl;
                 
             db.SaveChanges();
@@ -144,7 +144,9 @@ namespace FMS.Data.Services
 
         // All needed operations for MOT Management
 
-        public Mot CreateMot(int id, string testReport)
+
+        //Creation of new MOT
+        public Mot CreateMot(int id, string testReport, string testername, string teststatus, int mileage)
         {
             var vehicle = GetVehicle(id);
             if (vehicle == null) return null;
@@ -154,16 +156,52 @@ namespace FMS.Data.Services
                 // Id created by Database
                 TestReport = testReport,        
                 VehicleId = id,
+                TesterName = testername,
+                TestStatus = teststatus,
+                Mileage = mileage,
                 // set by default in model but we can override here if required
                 DateOfMOT = DateTime.Now,
             };
+
             db.Mots.Add(mot);
             db.SaveChanges(); // write to database
             return mot;
         }
 
+    
+        //Retrival of MOT with its parent vehicle
+        public Mot GetMot(int id)
+        {
+            // return ticket and related student or null if not found
+            return db.Mots
+                     .Include(t => t.Vehicle)
+                     .FirstOrDefault(t => t.Id == id);
+        }
 
+        //Deletion of MOT from its parent vehicle and dB
+        public bool DeleteMot(int id)
+        {
+            // find ticket
+            var mot = GetMot(id);
+            if (mot == null) return false;
+            
+            // remove MOT 
+            var result = db.Mots.Remove(mot);
 
+            db.SaveChanges();
+            return true;
+        }
+
+        // Retrieve all MOTs and their corresponding vehicles
+        public IList<Mot> GetAllMots()
+        {
+            return db.Mots
+                     .Include(t => t.Vehicle)
+                     .ToList();
+        }
+
+        // perform a search of the MOTs based on a query and
+        // perform a search of the vehicles based on a query
 
 
 
