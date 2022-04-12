@@ -22,8 +22,7 @@ namespace FMS.Data.Services
         {
             db.Initialise(); // recreate database
         }
-
-
+ 
 
         // ==================== Fleet Management ==================
        
@@ -137,7 +136,6 @@ namespace FMS.Data.Services
         {
             var existing = GetVehicleByRegNo(regNo);
             // if a student with email exists and the Id does not match
-            // the studentId (if provided), then they cannot use the email
             return existing != null && vehicleId != existing.Id;           
         }
 

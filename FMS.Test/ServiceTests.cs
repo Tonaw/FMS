@@ -38,7 +38,7 @@ namespace FMS.Test
 
 
         [Fact]
-        public void Vehicle_Input_Check()
+        public void Vehicle_Input_Check() //Testing for Vehicle Creation
         {
             //act
             var add = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
@@ -187,9 +187,37 @@ namespace FMS.Test
 
         }
 
+        //Tests for MOT cases
 
-        
+        [Fact]
+        public void Mot_MotCreation_InputCheck_ShouldReturn_Vehicle_And_NotNull()
+        {
+            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
             
+            var mot = svc.CreateMot(vehicle.Id, "All good",  "Donald", "Pass", 56000);
+            
+           
+            var s = svc.GetMot(mot.Id);
+
+            //assert - checks that mot isn't null
+            Assert.NotNull(s.Id);
+            Assert.Equal(vehicle.Id, mot.Vehicle.Id);
+        }
+
+        [Fact]
+        public void Mot_CheckViewOfMultipleMots_ShouldReturnTheCount()
+        {
+            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            
+            var mot = svc.CreateMot(vehicle.Id, "All good", "Donald", "Pass", 56000);
+            var mot2 = svc.CreateMot(vehicle.Id, "Wrong injectors",  "Donald", "Pass", 56000);
+
+            var s = svc.GetMot(vehicle.Id);
+
+            Assert.Equal(2, vehicle.Mot.Count);
+
+        }
+
 
 
 

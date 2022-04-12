@@ -25,15 +25,11 @@ namespace FMS.Data.Services
 
         //MOT Data
 
-        Mot CreateMot(int id, string testReport, string testername, string teststatus, int mileage);
+        Mot CreateMot(int vehicleId, string testReport, string testername, string teststatus, int mileage);
         Mot GetMot(int id);
         bool DeleteMot(int id);
         IList<Mot> GetAllMots();
-
-
-
-
-
+        
 
 
 

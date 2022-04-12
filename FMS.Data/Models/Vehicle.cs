@@ -44,8 +44,7 @@ namespace FMS.Data.Models
         // Relationship 1-N MOT History
         public IList<Mot> Mot {get; set; } = new List<Mot>();
 
-        
-
-    }
+    
+        }
 
 }
