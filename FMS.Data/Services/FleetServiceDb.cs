@@ -102,7 +102,7 @@ namespace FMS.Data.Services
                 return false;
             }
 
-            db.Vehicles.Remove(s);
+            db.Vehicles.Remove(s); 
             db.SaveChanges();
             return true;
         }

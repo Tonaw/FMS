@@ -20,8 +20,8 @@ namespace FMS.Data.Models
         [Required]
         public int Year { get; set; }
 
-        [Required]
-        public int RegistrationNo { get; set; } 
+       [Required]
+        public int RegistrationNo { get; set; }
 
         [Required]
         public string FuelType { get; set; }

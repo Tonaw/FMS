@@ -77,12 +77,12 @@ namespace FMS.Test
                 Make = "Merc",
                 Model = "S-class",
                 Year = 2019,
-                RegistrationNo = 7,
+                //RegistrationNo = 7,
                 FuelType = "Petrol",
                 Transmission = "Auto",
                 CC = 220,
                 NoofDoors = 4,
-                MOTDue = new System.DateTime(2020-09-29),
+                //MOTDue = new System.DateTime(2020-09-29),
                 CarPhotoUrl = ""
             };
 
@@ -158,6 +158,36 @@ namespace FMS.Test
             Assert.NotNull(ns);
             Assert.Equal(1, ns.Id);
         }
+
+        [Fact]
+        public void Vehicle_GetVehicle_FindVehicleWithReg_ShouldReturnNotNull()
+        {
+            // act 
+            var s = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+
+            var vehicle = svc.GetVehicleByRegNo(s.RegistrationNo);
+
+            //assert
+            Assert.NotNull(vehicle);
+        }
+
+        [Fact]
+        public void Vehicle_CheckVehicleExists_DeleteAndConfirm_ShouldReturnNull()
+        {
+            //act
+            var s = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+
+            var deleted = svc.DeleteVehicle(s.Id);
+
+            var check = svc.GetVehicle(s.Id);
+
+            //assert
+            Assert.True(deleted); //Confirm deletion
+            Assert.Null(check); //Check that vehicle is not longer in Vehicle List
+
+        }
+
+
         
             
 
