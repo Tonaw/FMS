@@ -12,7 +12,16 @@ namespace FMS.Data.Services
             svc.Initialise();
 
             // add seed data
+
+            //Add vehicle
+            var check = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var check1 = svc.AddVehicle("Volkswagen", "Golf", 2009, 84, "Diesel", "Auto", 220, 4, new System.DateTime(2022-11-19), "");
             
+            //Add MOT
+
+            svc.CreateMot(check.Id, "All good",  "Donald", "Pass", 56000);
+
+            svc.CreateMot(check1.Id, "Bad brakes",  "Kyle", "Fail", 56000);
 
         }
     }

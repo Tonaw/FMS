@@ -22,7 +22,7 @@ namespace FMS.Data.Services
         {
             db.Initialise(); // recreate database
         }
- 
+  
 
         // ==================== Fleet Management ==================
        
@@ -119,6 +119,7 @@ namespace FMS.Data.Services
             // update the details of the Vehicle retrieved and save
                 vehicle.Make = updated.Make;
                 vehicle.Year = updated.Year;
+                vehicle.Model = updated.Model;
                 //vehicle.RegistrationNo = updated.RegistrationNo; Should be permanent and uneditable (read only)
                 vehicle.FuelType = updated.FuelType;
                 vehicle.Transmission = updated.Transmission;
