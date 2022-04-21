@@ -16329,13 +16329,38 @@
   "RootNamespace": "FMS.Web",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Mot\\Index.cshtml",
+      "TargetPath": "Views\\Mot\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\_ViewImports.cshtml",
       "TargetPath": "Views\\_ViewImports.cshtml",
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\MotDelete.cshtml",
+      "TargetPath": "Views\\Vehicle\\MotDelete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\Create.cshtml",
+      "TargetPath": "Views\\Vehicle\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Mot\\_Search.cshtml",
+      "TargetPath": "Views\\Mot\\_Search.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\Edit.cshtml",
+      "TargetPath": "Views\\Vehicle\\Edit.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16349,8 +16374,28 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Mot\\_CloseModal.cshtml",
+      "TargetPath": "Views\\Mot\\_CloseModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\Details.cshtml",
+      "TargetPath": "Views\\Vehicle\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\_Mot.cshtml",
       "TargetPath": "Views\\Vehicle\\_Mot.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\_DeleteModal.cshtml",
+      "TargetPath": "Views\\Vehicle\\_DeleteModal.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\Delete.cshtml",
+      "TargetPath": "Views\\Vehicle\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16366,6 +16411,11 @@
     {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Shared\\_Login.cshtml",
       "TargetPath": "Views\\Shared\\_Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Mot\\Create.cshtml",
+      "TargetPath": "Views\\Mot\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16386,6 +16436,16 @@
     {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Vehicle\\MotCreate.cshtml",
+      "TargetPath": "Views\\Vehicle\\MotCreate.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Mot\\Details.cshtml",
+      "TargetPath": "Views\\Mot\\Details.cshtml",
       "FileKind": "mvc"
     },
     {

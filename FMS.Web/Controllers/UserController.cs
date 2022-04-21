@@ -25,8 +25,8 @@ namespace FMS.Web.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Login([Bind("Email,Password")]UserLoginViewModel m)
+        [ValidateAntiForgeryToken] 
+        public async Task<IActionResult> Login(UserLoginViewModel m)
         {        
             // call service to Authenticate User
             var user = _svc.Authenticate(m.Email, m.Password);
@@ -45,6 +45,29 @@ namespace FMS.Web.Controllers
             );
             return RedirectToAction("Index","Home");
         }
+
+
+        // [HttpPost]
+        // [ValidateAntiForgeryToken]
+        // public async Task<IActionResult> Login([Bind("Email,Password")]UserLoginViewModel m)
+        // {        
+        //     // call service to Authenticate User
+        //     var user = _svc.Authenticate(m.Email, m.Password);
+        //     // user not authenticated so manually add validation errors for email and password
+        //     if (user == null)
+        //     {
+        //         ModelState.AddModelError("Email", "Invalid Login Credentials");
+        //         ModelState.AddModelError("Password", "Invalid Login Credentials");
+        //         return View(m);
+        //     }
+           
+        //     // authenticated so sign user in using cookie authentication to store principal
+        //     await HttpContext.SignInAsync(
+        //         CookieAuthenticationDefaults.AuthenticationScheme,
+        //         BuildClaimsPrincipal(user)
+        //     );
+        //     return RedirectToAction("Index","Home");
+        // }
 
         public IActionResult Register()
         {
