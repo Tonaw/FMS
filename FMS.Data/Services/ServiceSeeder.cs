@@ -25,9 +25,9 @@ namespace FMS.Data.Services
             svc.CreateMot(check1.Id, "Bad brakes",  "Kyle", "Fail", 56000);
 
             // add users
-            var u1 = svc.Register("Guest", "guest@sms.com", "guest", Role.guest);
-            var u2 = svc.Register("Administrator", "admin@sms.com", "admin", Role.admin);
-            var u3 = svc.Register("Manager", "manager@sms.com", "manager", Role.manager);
+            var u1 = svc.Register("Guest", "guest@fms.com", "guest", Role.guest);
+            var u2 = svc.Register("Administrator", "admin@fms.com", "admin", Role.admin);
+            var u3 = svc.Register("Manager", "manager@fms.com", "manager", Role.manager);
   
 
         }

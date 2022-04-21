@@ -16374,6 +16374,16 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Shared\\_BreadCrumbs.cshtml",
+      "TargetPath": "Views\\Shared\\_BreadCrumbs.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Shared\\_AlertIcons.cshtml",
+      "TargetPath": "Views\\Shared\\_AlertIcons.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\_ViewStart.cshtml",
       "TargetPath": "Views\\_ViewStart.cshtml",
       "FileKind": "mvc"
@@ -16381,6 +16391,16 @@
     {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\User\\Login.cshtml",
       "TargetPath": "Views\\User\\Login.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Shared\\_Alert.cshtml",
+      "TargetPath": "Views\\Shared\\_Alert.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Home\\Privacy.cshtml",
+      "TargetPath": "Views\\Home\\Privacy.cshtml",
       "FileKind": "mvc"
     },
     {
