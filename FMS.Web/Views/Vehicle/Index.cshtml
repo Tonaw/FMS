@@ -1,0 +1,46 @@
+@model IList<Vehicle>
+
+<partial name="_BreadCrumbs" model=@(new [] {
+    ("/","Home"),
+    ("","Vehicle")
+}) />
+
+<h3 class="mb-3">Vehicle List</h3>
+
+<a asp-condition=@User.HasOneOfRoles("manager,admin") class="btn btn-sm btn-primary my-3" asp-action="Create" >
+    <i class="bi bi-plus"></i> Create
+</a>      
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Make</th>
+            <th>Model</th>
+            <th>Year</th>
+            <th>Registration</th>
+            <th>Fuel Type</th>
+            <th>Transmission Type</th>
+            <th>CC</th>
+            <th>No Of Doors</th>
+            <th>MOT Due</th>
+            <th>Car Photo</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var s in Model) {
+            <tr>
+                <td>@s.Make</td>
+                <td>@s.Model</td>
+                <td>@s.Year</td>
+                <td>@s.RegistrationNo</td>
+                <td>@s.FuelType</td>
+                <td>@s.Transmission</td>
+                <td>@s.CC</td>
+                <td>@s.NoofDoors</td>
+                <td>@s.MOTDue</td>
+                <td>@s.CarPhotoUrl</td>
+     
+            </tr>
+        }        
+    </tbody>
+</table>

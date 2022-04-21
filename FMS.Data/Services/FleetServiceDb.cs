@@ -28,7 +28,6 @@ namespace FMS.Data.Services
        
         // implement IFleetService methods here
 
-
         // All needed operations for Vehicle Management
 
                 // retrieve list of Vehicles
@@ -43,7 +42,6 @@ namespace FMS.Data.Services
             return db.Vehicles
                      .Include(s => s.Mot)
                      .FirstOrDefault(s => s.Id == id);
-
         }
 
                     //  .Include(s => s.StudentModules)

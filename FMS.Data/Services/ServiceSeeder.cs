@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Collections.Generic;
+using FMS.Data.Models;
 
 namespace FMS.Data.Services
 {
@@ -22,6 +23,12 @@ namespace FMS.Data.Services
             svc.CreateMot(check.Id, "All good",  "Donald", "Pass", 56000);
 
             svc.CreateMot(check1.Id, "Bad brakes",  "Kyle", "Fail", 56000);
+
+            // add users
+            var u1 = svc.Register("Guest", "guest@sms.com", "guest", Role.guest);
+            var u2 = svc.Register("Administrator", "admin@sms.com", "admin", Role.admin);
+            var u3 = svc.Register("Manager", "manager@sms.com", "manager", Role.manager);
+  
 
         }
     }

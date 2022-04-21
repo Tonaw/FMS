@@ -1,0 +1,33 @@
+@model Vehicle
+
+@if (Model.Mot.Count == 0)
+{
+    <h5>No MOT yet....</h5>
+}
+else
+{
+    <div class="card rounded shadow">
+        <table class="table table-sm">
+            <thead>
+                <tr>           
+                    <th>Ticket Issue</th>
+                    <th>Created</th>  
+                    <th>Active</th>       
+                    <th>Actions</th>  
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var t in Model.Mot) {
+                    <tr>              
+                        <td>@t.DateOfMOT</td>
+                        <td>@t.TesterName</td>
+                        <td>@t.TestStatus</td>
+                        <td>@t.TestReport</td>
+                        <td>@t.Mileage</td>  
+
+                    </tr>   
+                }
+            </tbody>
+        </table>
+    </div>
+}
