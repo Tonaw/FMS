@@ -1,0 +1,48 @@
+@model Mot
+
+<!-- Breadcrumbs using partial view -->
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/mot", "Mot"), ("","Close") })>
+    
+<div class="col card rounded shadow-lg p-4">
+
+    <h3 class="mb-4">MOT</h3>
+
+    <!-- TBC - use a dl to display the MOT details -->
+
+    <div class="row">
+    <!-- Details -->
+    <div class="col-8 card rounded shadow p-3">
+        <dl class="row">
+            <dt class="col-5">Id</dt>
+            <dd class="col-7">@Model.Id</dd>
+
+            <dt class="col-5">Tester Name</dt>
+            <dd class="col-7">@Model.TesterName</dd>
+
+            <dt class="col-5">Test Status</dt>
+            <dd class="col-7">@Model.TestStatus</dd>
+
+            <dt class="col-5">Test Report</dt>
+            <dd class="col-7">@Model.TestReport</dd>
+
+            <dt class="col-5">Mileage</dt>
+            <dd class="col-7">@Model.Mileage</dd>
+
+         </dl>
+     
+</div>
+
+    <div class="mt-4">           
+       
+        <!-- TBC - add a button to toggle the close ticket modal (_CloseModal.cshtml) -->
+         <button asp-condition=@User.HasOneOfRoles("admin, manager")  class="btn btn-sm btn-danger" 
+                        data-bs-toggle="modal" data-bs-target="#closeTicketModal">
+                    <i class="bi bi-trash"></i> Close
+        </button>
+
+        <a class="btn btn-link" asp-action="Index">Cancel</a>
+    </div>
+
+</div> 
+
+<partial name="_CloseModal"/>

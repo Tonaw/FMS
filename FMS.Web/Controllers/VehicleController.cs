@@ -62,7 +62,7 @@ namespace FMS.Web.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles="admin")]
 
-        public IActionResult Create([Bind("Make, Model, Year, RegNo, FuelType, Transmission, CC, NoOfDoors, MotDue, Carphotourl")]  Vehicle s)
+        public IActionResult Create([Bind("Make, Model, Year, RegistrationNo, FuelType, Transmission, CC, NoofDoors, MOTDue, CarPhotoUrl")]  Vehicle s)
         {
             // check registraion number is unique for this vehicle
             if (svc.IsDuplicateVehicleReg(s.RegistrationNo, s.Id))
@@ -105,13 +105,13 @@ namespace FMS.Web.Controllers
         }
 
 
-        // POST /student/edit/{id}
+        // POST /vehicle/edit/{id}
         [HttpPost]
-        [ValidateAntiForgeryToken]
+       // [ValidateAntiForgeryToken]
         [Authorize(Roles="admin,manager")]
-        public IActionResult Edit(int id, [Bind("Make, Model, Year, RegNo, fueltype, Transmission, CC, NoOfDoors, MotDue, Carphotourl")] Vehicle s)
+        public IActionResult Edit(int id, [Bind("Id, Make, Model, Year, RegistrationNo, FuelType, Transmission, CC, NoofDoors, MOTDue, CarPhotoUrl")] Vehicle s)
         {
-            // check email is unique for this student  
+            // check email is unique for this vehicle  
             if (svc.IsDuplicateVehicleReg(s.RegistrationNo, s.Id)) {
                 // add manual validation error
                 ModelState.AddModelError("RegNo", "This Registration number is already registered");
@@ -167,7 +167,7 @@ namespace FMS.Web.Controllers
         // ============== Vehicle with mot management ==============
 
         // GET /student/createMot/{id}
-        public IActionResult TicketCreate(int id)
+        public IActionResult MotCreate(int id)
         {     
             var s = svc.GetVehicle(id);
             // check the returned vehicle is not null and if so alert
@@ -188,20 +188,20 @@ namespace FMS.Web.Controllers
         // POST /vehicle/create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult MotCreate([Bind("VehicleId, Testreport, Testername, Teststatus, Mileage")] Mot t)
+        public IActionResult MotCreate([Bind("VehicleId, TestReport, TesterName, TestStatus, Mileage")] Mot t)
         {
             if (ModelState.IsValid)
             {                
-                var ticket = svc.CreateMot(t.VehicleId, t.TestReport, t.TesterName, t.TestStatus, t.Mileage);
+                var mot = svc.CreateMot(t.VehicleId, t.TestReport, t.TesterName, t.TestStatus, t.Mileage);
                 Alert($"MOT created successfully for vehicle {t.VehicleId}", AlertType.info);
-                return RedirectToAction(nameof(Details), new { Id = ticket.VehicleId });
+                return RedirectToAction(nameof(Details), new { Id = mot.VehicleId });
             }
             // redisplay the form for editing
             return View(t);
         }
 
         // GET /vehicle/motdelete/{id}
-        public IActionResult Motdelete(int id)
+        public IActionResult MotDelete(int id)
         {
             // load the ticket using the service
             var mot = svc.GetMot(id);
@@ -228,6 +228,9 @@ namespace FMS.Web.Controllers
             // redirect to the ticket index view
             return RedirectToAction(nameof(Details), new { Id = VehicleId });
         }
+
+
+
 
     }
 }

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace FMS.Data.Models
 {
 
-    // public enum TestStatus { Pass, Fail }
+    public enum TestStatus { Pass, Fail }
 
     public class Mot
     {

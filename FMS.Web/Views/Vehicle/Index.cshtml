@@ -23,7 +23,6 @@
             <th>CC</th>
             <th>No Of Doors</th>
             <th>MOT Due</th>
-            <th>Car Photo</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -39,7 +38,6 @@
                 <td>@s.CC</td>
                 <td>@s.NoofDoors</td>
                 <td>@s.MOTDue</td>
-                <td>@s.CarPhotoUrl</td>
                 <td>
                     <!-- Add View link -->
                     <a data-bs-toggle="tooltip" data-bs-placement="top" title="view vehicle details" asp-controller="Vehicle" asp-action="Details" asp-route-id=@s.Id><i class="bi bi-display"></i></a>  

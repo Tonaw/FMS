@@ -15,8 +15,8 @@ namespace FMS.Data.Services
             // add seed data
 
             //Add vehicle
-            var check = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
-            var check1 = svc.AddVehicle("Volkswagen", "Golf", 2009, 84, "Diesel", "Auto", 220, 4, new System.DateTime(2022-11-19), "");
+            var check = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "https://th.bing.com/th/id/R.1ccc5e38e2df2cad5b3a506b4577ddd4?rik=BtrULevOZ2a1lw&pid=ImgRaw&r=0");
+            var check1 = svc.AddVehicle("Volkswagen", "Golf", 2009, 84, "Diesel", "Auto", 220, 4, new System.DateTime(2022-11-19), "https://th.bing.com/th/id/R.9d116f4b200ab906fc0a232f496f2812?rik=yVowSf2vOH7kDQ&pid=ImgRaw&r=0");
             
             //Add MOT
 

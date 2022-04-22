@@ -41,18 +41,12 @@
             <dt class="col-5">MOTDue</dt>
             <dd class="col-7">@Model.MOTDue</dd>
 
-            <dt class="col-5">CarPhotoUrl</dt>
-            <dd class="col-7">@Model.CarPhotoUrl</dd>
         </dl>
 
         <!-- use flex box to separate two divs containing primary actions on left and danger action on right -->
         <div class="mt-4 d-flex flex-row justify-content-between">
             <div>
-              
-                <!-- navigation link to CreateTicket action, passing correct route parameter -->
-                <a asp-action="MotCreate" asp-route-id="@Model.Id" class="btn btn-sm btn-primary"><i
-                        class="bi bi-bag-plus"></i> Add MOT</a>          
-
+                                     
                 <!-- navigation link to Details action, passing the correct route id parameter -->
                 <a asp-condition=@(User.IsInRole("admin") || User.IsInRole("manager")) asp-controller="Vehicle" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-sm btn-secondary"><i
                         class="bi bi-pen"></i> Edit</a>
@@ -79,9 +73,17 @@
 </div>
 
 <!-- Mot -->
-<div class="row pt-3">
-    <partial name="_Mot" />
-</div>
+<div>
+    <div class="row pt-3 mb-3">
+        <partial name="_Mot" />
+    </div>
 
+    <div>
+        <!-- navigation link to CreateMOT action, passing correct route parameter -->
+                <a asp-condition=@User.HasOneOfRoles("admin,manager") asp-action="1" asp-controller="Vehicle" asp-route-id="@Model.Id" class="btn btn-sm btn-primary"><i
+                        class="bi bi-bag-plus"></i> Add MOT</a> 
+    </div>
+
+</div>
 <!-- Delete Modal -->
 <partial name="_DeleteModal" />
