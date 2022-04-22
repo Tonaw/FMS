@@ -62,7 +62,7 @@ namespace FMS.Web.Controllers
         [ValidateAntiForgeryToken]
         [Authorize(Roles="admin")]
 
-        public IActionResult Create([Bind("Make, Model, Year, RegNo, fueltype, Transmission, CC, NoOfDoors, MotDue, Carphotourl")]  Vehicle s)
+        public IActionResult Create([Bind("Make, Model, Year, RegNo, FuelType, Transmission, CC, NoOfDoors, MotDue, Carphotourl")]  Vehicle s)
         {
             // check registraion number is unique for this vehicle
             if (svc.IsDuplicateVehicleReg(s.RegistrationNo, s.Id))

@@ -7,9 +7,7 @@
 
 <h3 class="mb-3">Vehicle List</h3>
 
-@* asp-condition=@User.HasOneOfRoles("manager,admin") *@
-
-<a  class="btn btn-sm btn-primary my-3" asp-action="Create" >
+<a asp-condition=@(User.IsInRole("manager") || User.IsInRole("admin")) class="btn btn-sm btn-primary my-3" asp-action="Create" >
     <i class="bi bi-plus"></i> Create
 </a>      
 
