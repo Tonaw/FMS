@@ -44,24 +44,21 @@ namespace FMS.Data.Services
                      .FirstOrDefault(s => s.Id == id);
         }
 
-                    //  .Include(s => s.StudentModules)
-                    //  // drill down and include each studentmodule module entity     
-                    //  .ThenInclude(sm => sm.Module) 
-                    //  .FirstOrDefault(s => s.Id == id);
-
         
 
         // Add a new vehicle checking registration number is unique
         public Vehicle AddVehicle(string make, string model, int year,
-                                    int regNo, string fueltype, string transmission, int cc, 
+                                    string regNo, string fueltype, string transmission, int cc, 
                                     int noofdoors, DateTime motdue, string carphotourl)
         {
-            // check if student with email exists            
+            
+            // check if Vehicle with email exists            
             var exists = GetVehicleByRegNo(regNo);
             if (exists != null)
             {
                 return null;
-            } 
+            }
+
 
             // create new vehicle
             var s = new Vehicle
@@ -83,7 +80,7 @@ namespace FMS.Data.Services
             return s; // return newly added Vehicle
         }
 
-        public Vehicle GetVehicleByRegNo(int registrationNo)
+        public Vehicle GetVehicleByRegNo(string registrationNo)
         {
             return db.Vehicles.FirstOrDefault(s => s.RegistrationNo == registrationNo);
         }
@@ -108,6 +105,8 @@ namespace FMS.Data.Services
         // Update the Vehicle with the details in updated 
         public Vehicle UpdateVehicle(Vehicle updated)
         {
+            
+
             // verify the Vehicle exists
             var vehicle = GetVehicle(updated.Id);
             if (vehicle == null)
@@ -118,12 +117,12 @@ namespace FMS.Data.Services
                 vehicle.Make = updated.Make;
                 vehicle.Year = updated.Year;
                 vehicle.Model = updated.Model;
-                //vehicle.RegistrationNo = updated.RegistrationNo; Should be permanent and uneditable (read only)
+                vehicle.RegistrationNo = updated.RegistrationNo;
                 vehicle.FuelType = updated.FuelType;
                 vehicle.Transmission = updated.Transmission;
                 vehicle.CC = updated.CC;
                 vehicle.NoofDoors = updated.NoofDoors;
-                //vehicle.MOTDue = updated.MOTDue; Should be permanent and uneditable (read only)
+                vehicle.MOTDue = updated.MOTDue;
                 vehicle.CarPhotoUrl = updated.CarPhotoUrl;
                 
             db.SaveChanges();
@@ -131,10 +130,10 @@ namespace FMS.Data.Services
         }
 
         //Checking for Vehicle Duplicates by Vehicle Registration Number
-        public bool IsDuplicateVehicleReg(int regNo, int vehicleId) 
+        public bool IsDuplicateVehicleReg(string regNo, int vehicleId) 
         {
             var existing = GetVehicleByRegNo(regNo);
-            // if a student with email exists and the Id does not match
+            // if a Vehicle with email exists and the Id does not match
             return existing != null && vehicleId != existing.Id;           
         }
 
@@ -145,8 +144,12 @@ namespace FMS.Data.Services
         //Creation of new MOT
         public Mot CreateMot(int id, string testReport, string testername, string teststatus, int mileage)
         {
+
+        
             var vehicle = GetVehicle(id);
             if (vehicle == null) return null;
+
+
 
             var mot = new Mot
             {
@@ -169,7 +172,7 @@ namespace FMS.Data.Services
         //Retrival of MOT with its parent vehicle
         public Mot GetMot(int id)
         {
-            // return ticket and related student or null if not found
+            // return Mot and related Vehicle or null if not found
             return db.Mots
                      .Include(t => t.Vehicle)
                      .FirstOrDefault(t => t.Id == id);
@@ -178,7 +181,7 @@ namespace FMS.Data.Services
         //Deletion of MOT from its parent vehicle and dB
         public bool DeleteMot(int id)
         {
-            // find ticket
+            // find Mot
             var mot = GetMot(id);
             if (mot == null) return false;
             

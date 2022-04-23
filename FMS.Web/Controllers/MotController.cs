@@ -17,10 +17,10 @@ namespace FMS.Web.Controllers
             svc = new FleetServiceDb();
         } 
 
-        // GET /ticket/index
+        // GET /Mot/index
         public IActionResult Index()
         {
-            // return open tickets
+            // return open Mots
             var mots = svc.GetAllMots();
 
             return View(mots);
@@ -30,8 +30,8 @@ namespace FMS.Web.Controllers
         // public IActionResult Search(MotSearchViewModel m)
         // {                  
         //     // TBC - perform query using values in view model and assign 
-        //     //       results to viewmodel Tickets property
-        //     m.Tickets = svc.SearchTickets(m.Range, m.Query);
+        //     //       results to viewmodel Mots property
+        //     m.Mots = svc.SearchMots(m.Range, m.Query);
 
         //     // TBC -- return the View and pass the viewmodel as a param
         //     return View(m);
@@ -50,27 +50,27 @@ namespace FMS.Web.Controllers
             return View(mot);
         }
 
-        // // POST /ticket/close/{id}
-        // [HttpPost]
-        // [Authorize(Roles="admin,manager")]
-        // public IActionResult Close([Bind("Id, Resolution")] Mot t)
-        // {
-        //     // close ticket via service
-        //     var ticket = svc.CloseTicket(t.Id, t.Resolution); // TBC add resolution from the model */ ;
-        //     if (ticket == null)
-        //     {
-        //         Alert("Ticket Not Found", AlertType.warning);                               
-        //     }
-        //     else
-        //     {
-        //         Alert($"Ticket {t.Id } closed", AlertType.info);  
-        //     }
+        // POST /Mot/close/{id}
+        [HttpPost]
+        [Authorize(Roles="admin,manager")]
+        public IActionResult Delete(int id)
+        {
+            // close Mot via service
+            var mot = svc.DeleteMot(id); // TBC add resolution from the model */ ;
+            if (mot == null)
+            {
+                Alert("MOT Not Found", AlertType.warning);                               
+            }
+            else
+            {
+                Alert($"MOT {id } Deleted", AlertType.info);  
+            }
 
-        //     // redirect to the index view
-        //     return RedirectToAction(nameof(Index));
-        // }
+            // redirect to the index view
+            return RedirectToAction(nameof(Index));
+        }
        
-        // GET /ticket/create
+        //GET /Mot/create
         [Authorize(Roles="admin,manager")]
         public IActionResult Create()
         {
@@ -84,7 +84,7 @@ namespace FMS.Web.Controllers
             return View( mvm );
         }
        
-        // POST /ticket/create
+        // POST /Mot/create
         [HttpPost]
         [Authorize(Roles="admin,manager")]
         public IActionResult Create(MotCreateViewModel mvm)

@@ -1,4 +1,4 @@
-
+using System;
 using Xunit;
 using FMS.Data.Models;
 using FMS.Data.Services;
@@ -28,8 +28,8 @@ namespace FMS.Test
         
             // ensure data source is empty before each test
             //act
-            var check = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
-            var check1 = svc.AddVehicle("Volkswagen", "Golf", 2009, 84, "Diesel", "Auto", 220, 4, new System.DateTime(2022-11-19), "");
+            var check = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var check1 = svc.AddVehicle("Volkswagen", "Golf", 2009, "8778997UI", "Diesel", "Auto", 220, 4, new System.DateTime(2022-11-19), "");
             
             //assert
             Assert.NotNull(check); // this vehicle should have been added correctly
@@ -41,12 +41,12 @@ namespace FMS.Test
         public void Vehicle_Input_Check() //Testing for Vehicle Creation
         {
             //act
-            var add = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var add = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
             
             //retrieve
             var s = svc.GetVehicle(add.Id);
 
-            //assert - checks that student isn't null
+            //assert - checks that Vehicle isn't null
             Assert.NotNull(s);
 
             // now assert that the properties were set properly
@@ -54,7 +54,7 @@ namespace FMS.Test
             Assert.Equal("Toyota", s.Make);
             Assert.Equal("Camry", s.Model);
             Assert.Equal(2020, s.Year);
-            Assert.Equal(8, s.RegistrationNo);
+            Assert.Equal("8778997UI", s.RegistrationNo);
             Assert.Equal("Petrol", s.FuelType);
             Assert.Equal("Manual", s.Transmission);
             Assert.Equal(330, s.NoofDoors);
@@ -69,7 +69,7 @@ namespace FMS.Test
         public void Vehicle_Update_Existing()
         {
             // arrange - create test vehicle
-            var exist = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var exist = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
             
             // act - create a copy and update any vehiclle properties (except Id) 
             var u = new Vehicle{
@@ -89,7 +89,7 @@ namespace FMS.Test
             // save updated Vehicle
             svc.UpdateVehicle(u);
 
-            // reload updated student from database into us
+            // reload updated Vehicle from database into us
             var us = svc.GetVehicle(exist.Id);
 
             // assert
@@ -124,8 +124,8 @@ namespace FMS.Test
         public void Vehicle_GetAllVehicles_SinceTwoExists_ShouldReturn2()
         {
             // arrange
-            var exist = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
-            var exist2 = svc.AddVehicle("Merc", "S-Class", 2021, 77776768, "Diesel", "Auto", 3890, 4, new System.DateTime(2020-09-19), "");
+            var exist = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var exist2 = svc.AddVehicle("Merc", "S-Class", 2021, "8778997UI", "Diesel", "Auto", 3890, 4, new System.DateTime(2020-09-19), "");
             
             // act
             var vehicles = svc.GetVehicles();
@@ -149,7 +149,7 @@ namespace FMS.Test
          public void Vehicle_GetVehicle_WhenNonExistent_ShouldReturnVehicle()
         {
             // act 
-            var s = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var s = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
 
 
             var ns = svc.GetVehicle(s.Id);
@@ -163,7 +163,7 @@ namespace FMS.Test
         public void Vehicle_GetVehicle_FindVehicleWithReg_ShouldReturnNotNull()
         {
             // act 
-            var s = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var s = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
 
             var vehicle = svc.GetVehicleByRegNo(s.RegistrationNo);
 
@@ -175,7 +175,7 @@ namespace FMS.Test
         public void Vehicle_CheckVehicleExists_DeleteAndConfirm_ShouldReturnNull()
         {
             //act
-            var s = svc.AddVehicle("Toyota", "Camry", 2020, 87789977, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var s = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, Convert.ToDateTime(2020-09-29), "");
 
             var deleted = svc.DeleteVehicle(s.Id);
 
@@ -192,7 +192,7 @@ namespace FMS.Test
         [Fact]
         public void Mot_MotCreation_InputCheck_ShouldReturn_Vehicle_And_NotNull()
         {
-            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, "8778997UI", "Petrol", "Manual", 330, 4, Convert.ToDateTime(2020-09-29), "");
             
             var mot = svc.CreateMot(vehicle.Id, "All good",  "Donald", "Pass", 56000);
             
@@ -207,7 +207,7 @@ namespace FMS.Test
         [Fact]
         public void Mot_CheckViewOfMultipleMots_ShouldReturnTheCount()
         {
-            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, "86557YT", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
             
             var mot = svc.CreateMot(vehicle.Id, "All good", "Donald", "Pass", 56000);
             var mot2 = svc.CreateMot(vehicle.Id, "Wrong injectors",  "Donald", "Pass", 56000);
@@ -220,7 +220,7 @@ namespace FMS.Test
         [Fact]
         public void Mot_CheckValueInputs_ShouldReturn()
         {
-            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, 8, "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
+            var vehicle = svc.AddVehicle("Toyota", "Camry", 2020, "86557YT", "Petrol", "Manual", 330, 4, new System.DateTime(2020-09-29), "");
             
             var mot = svc.CreateMot(vehicle.Id, "All good", "Donald", "Pass", 56000);
             var mot2 = svc.CreateMot(vehicle.Id, "Wrong injectors",  "Donald", "Pass", 56000);

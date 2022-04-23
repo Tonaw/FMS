@@ -21,7 +21,7 @@ namespace FMS.Data.Models
         public int Year { get; set; }
 
        [Required]
-        public int RegistrationNo { get; set; }
+        public string RegistrationNo { get; set; }
 
         [Required]
         public string FuelType { get; set; }
@@ -35,7 +35,7 @@ namespace FMS.Data.Models
         [Required]
         public int NoofDoors { get; set; }
 
-        [Required]
+
         public DateTime MOTDue { get; set; }
     
         [UrlResource]

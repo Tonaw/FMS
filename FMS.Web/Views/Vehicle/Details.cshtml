@@ -32,13 +32,13 @@
             <dt class="col-5">CC</dt>
             <dd class="col-7">@Model.CC</dd>
 
-            <dt class="col-5">NoofDoors</dt>
+            <dt class="col-5">No of Doors</dt>
             <dd class="col-7">@Model.NoofDoors</dd>
 
             <dt class="col-5">CC</dt>
             <dd class="col-7">@Model.FuelType</dd>
 
-            <dt class="col-5">MOTDue</dt>
+            <dt class="col-5">MOT Due Date</dt>
             <dd class="col-7">@Model.MOTDue</dd>
 
         </dl>
@@ -69,8 +69,10 @@
     <!-- Photo -->
     <div class="col-4">
         <img src="@Model.CarPhotoUrl" class="img-fluid">
+        @* class="img-fluid" *@
     </div>
 </div>
+
 
 <!-- Mot -->
 <div>
@@ -80,7 +82,7 @@
 
     <div>
         <!-- navigation link to CreateMOT action, passing correct route parameter -->
-                <a asp-condition=@User.HasOneOfRoles("admin,manager") asp-action="1" asp-controller="Vehicle" asp-route-id="@Model.Id" class="btn btn-sm btn-primary"><i
+                <a asp-condition=@User.HasOneOfRoles("admin,manager") asp-action="MotCreate" asp-controller="Vehicle" asp-route-id="@Model.Id" class="btn btn-sm btn-primary"><i
                         class="bi bi-bag-plus"></i> Add MOT</a> 
     </div>
 

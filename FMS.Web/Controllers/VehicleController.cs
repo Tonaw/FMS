@@ -90,7 +90,7 @@ namespace FMS.Web.Controllers
         [Authorize(Roles="admin,manager")]
         public IActionResult Edit(int id)
         {        
-            // load the student using the service
+            // load the Vehicle using the service
             var s = svc.GetVehicle(id);
 
             // check if s is null and if so alert
@@ -131,13 +131,13 @@ namespace FMS.Web.Controllers
             return View(s);
         }
 
-                // GET / student/delete/{id}
+                // GET / Vehicle/delete/{id}
         [Authorize(Roles="admin")]      
         public IActionResult Delete(int id)
         {       
-            // load the student using the service
+            // load the Vehicle using the service
             var s = svc.GetVehicle(id);
-            // check the returned student is not null and if so return NotFound()
+            // check the returned Vehicle is not null and if so return NotFound()
             if (s == null)
             {
                 // TBC - Display suitable warning alert and redirect
@@ -145,17 +145,17 @@ namespace FMS.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }     
             
-            // pass student to view for deletion confirmation
+            // pass Vehicle to view for deletion confirmation
             return View(s);
         }
 
-        // POST /student/delete/{id}
+        // POST /Vehicle/delete/{id}
         [HttpPost]
         [Authorize(Roles="admin")]
         [ValidateAntiForgeryToken]              
         public IActionResult DeleteConfirm(int id)
         {
-            // TBC delete student via service
+            // TBC delete Vehicle via service
             svc.DeleteVehicle(id);
 
             Alert("Vehicle deleted successfully", AlertType.info);
@@ -166,7 +166,7 @@ namespace FMS.Web.Controllers
 
         // ============== Vehicle with mot management ==============
 
-        // GET /student/createMot/{id}
+        // GET /Vehicle/createMot/{id}
         public IActionResult MotCreate(int id)
         {     
             var s = svc.GetVehicle(id);
@@ -177,7 +177,7 @@ namespace FMS.Web.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // create a mot view model and set StudentId (foreign key)
+            // create a mot view model and set VehicleId (foreign key)
             var mot = new Mot { VehicleId = id };
 
             return View( mot );
@@ -203,29 +203,29 @@ namespace FMS.Web.Controllers
         // GET /vehicle/motdelete/{id}
         public IActionResult MotDelete(int id)
         {
-            // load the ticket using the service
+            // load the Mot using the service
             var mot = svc.GetMot(id);
-            // check the returned Ticket is not null and if so return NotFound()
+            // check the returned Mot is not null and if so return NotFound()
             if (mot == null)
             {
                 Alert($"MOT {id} not found", AlertType.warning);
                 return RedirectToAction(nameof(Index));
             }     
             
-            // pass ticket to view for deletion confirmation
+            // pass Mot to view for deletion confirmation
             return View(mot);
         }
 
-        // POST /student/ticketdeleteconfirm/{id}
+        // POST /Vehicle/Motdeleteconfirm/{id}
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult MotDeleteConfirm(int id, int VehicleId)
         {
-            // delete student via service
+            // delete Vehicle via service
             svc.DeleteMot(id);
             Alert($"MOT deleted successfully for vehicle {VehicleId}", AlertType.info);
             
-            // redirect to the ticket index view
+            // redirect to the Mot index view
             return RedirectToAction(nameof(Details), new { Id = VehicleId });
         }
 

@@ -12,9 +12,10 @@ namespace FMS.Data.Models
         
         // suitable mot attributes / relationships
 
+        
         public DateTime DateOfMOT { get; set; } = DateTime.Now;
 
-        public string TesterName { get; set; }
+        public string TesterName { get; set; } 
 
         [Required]
         public string TestStatus { get; set; }
@@ -29,6 +30,8 @@ namespace FMS.Data.Models
 
         public int VehicleId { get; set; }      // foreign key
         public Vehicle Vehicle { get; set; }    // navigation property
+
+        public User User { get; set; }
 
     }
 }

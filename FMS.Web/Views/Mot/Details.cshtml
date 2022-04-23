@@ -1,17 +1,17 @@
 @model Mot
 
 <!-- Breadcrumbs using partial view -->
-<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/mot", "Mot"), ("","Close") })>
+<partial name="_Breadcrumbs" model=@(new [] { ("/", "Home"), ("/vehicle", "Vehicle"), ("","Close") })>
     
 <div class="col card rounded shadow-lg p-4">
 
-    <h3 class="mb-4">MOT</h3>
+    <h3 class="mb-4">MOT Details</h3>
 
     <!-- TBC - use a dl to display the MOT details -->
 
     <div class="row">
     <!-- Details -->
-    <div class="col-8 card rounded shadow p-3">
+    <div class="col-8">
         <dl class="row">
             <dt class="col-5">Id</dt>
             <dd class="col-7">@Model.Id</dd>
@@ -34,13 +34,12 @@
 
     <div class="mt-4">           
        
-        <!-- TBC - add a button to toggle the close ticket modal (_CloseModal.cshtml) -->
-         <button asp-condition=@User.HasOneOfRoles("admin, manager")  class="btn btn-sm btn-danger" 
-                        data-bs-toggle="modal" data-bs-target="#closeTicketModal">
-                    <i class="bi bi-trash"></i> Close
+        <!-- TBC - add a button to toggle the close MOT modal (_CloseModal.cshtml) -->
+         <button asp-condition=@User.HasOneOfRoles("admin, manager")  class="btn btn-sm btn-danger" asp-action="Delete">
+                    <i class="bi bi-red"></i> Delete
         </button>
 
-        <a class="btn btn-link" asp-action="Index">Cancel</a>
+        <a class="btn btn-link" asp-controller="Vehicle" asp-route-id="@Model.Vehicle.Id" asp-action="Details">Cancel</a>
     </div>
 
 </div> 

@@ -16,12 +16,12 @@ namespace FMS.Data.Services
         IList<Vehicle> GetVehicles();
         Vehicle GetVehicle(int id);
         Vehicle AddVehicle(string make, string model, int year,
-                                    int regNo, string fueltype, string transmission, int cc, 
+                                    string regNo, string fueltype, string transmission, int cc, 
                                     int noofdoors, DateTime motdue, string carphotourl);
-        Vehicle GetVehicleByRegNo(int RegistrationNo);
+        Vehicle GetVehicleByRegNo(string RegistrationNo);
         bool DeleteVehicle(int id); 
         Vehicle UpdateVehicle(Vehicle updated);
-        bool IsDuplicateVehicleReg(int regNo, int vehicleId); 
+        bool IsDuplicateVehicleReg(string regNo, int vehicleId); 
 
         //MOT Data
 

@@ -16329,6 +16329,11 @@
   "RootNamespace": "FMS.Web",
   "Documents": [
     {
+      "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Mot\\Delete.cshtml",
+      "TargetPath": "Views\\Mot\\Delete.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\USER\\Documents\\COM 741\\FMS\\FMS.Web\\Views\\Mot\\Index.cshtml",
       "TargetPath": "Views\\Mot\\Index.cshtml",
       "FileKind": "mvc"

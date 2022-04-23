@@ -8,7 +8,7 @@ namespace FMS.Web.Models
         // selectlist of Vehicle (id, make)       
         public SelectList Vehicle { set; get; }
 
-        // Collecting StudentId and Issue in Form
+        // Collecting VehicleId and Issue in Form
         [Required(ErrorMessage = "Please select a vehicle")]
         [Display(Name = "Select Vehicle")]
         public int VehicleId { get; set; }

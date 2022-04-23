@@ -8,7 +8,7 @@ namespace FMS.Web.Models
     {
         // TBC - complete view model to contain 
 
-        // results which is a list of Ticket
+        // results which is a list of Mot
         public IList<Mot> Mots {get; set;} = new List <Mot>();
        
         // query which is a string 
