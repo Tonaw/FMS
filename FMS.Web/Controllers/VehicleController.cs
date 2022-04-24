@@ -229,9 +229,6 @@ namespace FMS.Web.Controllers
             return RedirectToAction(nameof(Details), new { Id = VehicleId });
         }
 
-
-
-
     }
 }
         
