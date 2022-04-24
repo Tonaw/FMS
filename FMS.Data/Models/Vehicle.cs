@@ -20,7 +20,7 @@ namespace FMS.Data.Models
         [Required]
         public int Year { get; set; }
 
-       [Required]
+        [Required]
         public string RegistrationNo { get; set; }
 
         [Required]
@@ -35,7 +35,7 @@ namespace FMS.Data.Models
         [Required]
         public int NoofDoors { get; set; }
 
-
+        
         public DateTime MOTDue { get; set; }
     
         [UrlResource]

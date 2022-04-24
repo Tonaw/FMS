@@ -21,7 +21,7 @@ else
             <tbody>
                 @foreach(var t in Model.Mot) {
                     <tr>              
-                        <td>@t.DateOfMOT</td>
+                        <td>@t.DateOfMOT.ToShortDateString()</td>
                         <td>@t.TesterName</td>
                         <td>@t.TestStatus</td>
                         <td>@t.TestReport</td>
